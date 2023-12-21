@@ -171,7 +171,7 @@ steps:
     id: test-action
     uses: ./
     with:
-      milliseconds: 1000
+      seconds: 2
 
   - name: Print Output
     id: output
@@ -202,7 +202,7 @@ steps:
     id: test-action
     uses: actions/typescript-action@v1 # Commit with the `v1` tag
     with:
-      milliseconds: 1000
+      seconds: 1
 
   - name: Print Output
     id: output
