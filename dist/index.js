@@ -2760,12 +2760,12 @@ const wait_1 = __nccwpck_require__(259);
  */
 async function run() {
     try {
-        const ms = core.getInput('milliseconds');
+        const seconds = core.getInput('seconds');
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        core.debug(`Waiting ${ms} milliseconds ...`);
+        core.debug(`Waiting ${seconds} seconds ...`);
         // Log the current timestamp, wait, then log the new timestamp
         core.debug(new Date().toTimeString());
-        await (0, wait_1.wait)(parseInt(ms, 10));
+        await (0, wait_1.wait)(parseInt(seconds, 10));
         core.debug(new Date().toTimeString());
         // Set outputs for other workflow steps to use
         core.setOutput('time', new Date().toTimeString());
@@ -2789,16 +2789,16 @@ exports.run = run;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.wait = void 0;
 /**
- * Wait for a number of milliseconds.
- * @param milliseconds The number of milliseconds to wait.
+ * Wait for a number of seconds.
+ * @param seconds The number of seconds to wait.
  * @returns {Promise<string>} Resolves with 'done!' after the wait is over.
  */
-async function wait(milliseconds) {
+async function wait(seconds) {
     return new Promise(resolve => {
-        if (isNaN(milliseconds)) {
-            throw new Error('milliseconds not a number');
+        if (Number.isNaN(seconds)) {
+            throw new Error('seconds is not a number');
         }
-        setTimeout(() => resolve('done!'), milliseconds);
+        setTimeout(() => resolve('done!'), seconds * 1000);
     });
 }
 exports.wait = wait;
