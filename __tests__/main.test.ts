@@ -37,8 +37,8 @@ describe('action', () => {
     // Set the action's inputs as return values from core.getInput()
     getInputMock.mockImplementation((name: string): string => {
       switch (name) {
-        case 'milliseconds':
-          return '500'
+        case 'seconds':
+          return '3'
         default:
           return ''
       }
@@ -48,7 +48,7 @@ describe('action', () => {
     expect(runMock).toHaveReturned()
 
     // Verify that all of the core library functions were called correctly
-    expect(debugMock).toHaveBeenNthCalledWith(1, 'Waiting 500 milliseconds ...')
+    expect(debugMock).toHaveBeenNthCalledWith(1, 'Waiting 3 seconds ...')
     expect(debugMock).toHaveBeenNthCalledWith(
       2,
       expect.stringMatching(timeRegex)
@@ -69,7 +69,7 @@ describe('action', () => {
     // Set the action's inputs as return values from core.getInput()
     getInputMock.mockImplementation((name: string): string => {
       switch (name) {
-        case 'milliseconds':
+        case 'seconds':
           return 'this is not a number'
         default:
           return ''
@@ -82,7 +82,7 @@ describe('action', () => {
     // Verify that all of the core library functions were called correctly
     expect(setFailedMock).toHaveBeenNthCalledWith(
       1,
-      'milliseconds not a number'
+      'seconds is not a number'
     )
     expect(errorMock).not.toHaveBeenCalled()
   })
